@@ -16,7 +16,7 @@ app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
 //CONNECTION OF MONGOOSE TO THE SERVER MONGODB
-mongoose.connect("mongodb://127.0.0.1/Restful_BlogApp",{useNewUrlParser:true,useUnifiedTopology:true});
+mongoose.connect(process.env.PORT||"mongodb://127.0.0.1/Restful_BlogApp",{useNewUrlParser:true,useUnifiedTopology:true});
 //var MongoClient=require('mongodb').MongoClient;
 // var url="mongodb://restful-blog-app-js.herokuapp.com/Restful_BlogApp";
 // mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true},function(err,client)
