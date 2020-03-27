@@ -16,28 +16,22 @@ app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
 //CONNECTION OF MONGOOSE TO THE SERVER MONGODB
-mongoose.connect(process.env.MONGODB_URL||"mongodb://127.0.0.1/Restful_BlogApp",{useNewUrlParser:true,useUnifiedTopology:true});
+//mongoose.connect("mongodb://127.0.0.1/Restful_BlogApp",{useNewUrlParser:true,useUnifiedTopology:true});
 //var MongoClient=require('mongodb').MongoClient;
-// var url="mongodb://restful-blog-app-js.herokuapp.com/Restful_BlogApp";
-// mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true},function(err,client)
-// {
-//     if(err)
-//     {
-//         console.log("Error");
-//         throw err;
-//     }
-//     else{
-//         console.log("DB connected....");
-//     }
-// });
-// var db;
-// var mongodb=require("mongodb");
-// var connection="mongodb+srv://swarnim:anand00008@test-vqkmj.mongodb.net/BlogApp?retryWrites=true&w=majority"
-//     mongodb.connect(connection,{useNewUrlParser:true,useUnifiedTopology:true},function(err,client)
-//     {
-//         db=client.db();
-//         app.listen(3000);
-//     })
+//var url="mongodb://restful-blog-app-js.herokuapp.com/Restful_BlogApp";
+var url=process.env.MONGO_URL||"mongodb+srv://swarnimanand445:gupta00006@test-vqkmj.mongodb.net/test?retryWrites=true&w=majority";
+mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true},function(err,client)
+{
+    if(err)
+    {
+        console.log("Error");
+        throw err;
+    }
+    else{
+        console.log("DB connected....");
+    }
+});
+
 
 //CONVERTING ALL THE SCHEMA IN JSON FORMAT
 var blogSchema=new mongoose.Schema({
@@ -163,4 +157,4 @@ app.delete("/blog/:id",function(req,res)
 app.listen(port,function()
 {
     console.log("server started");
-})
+});
