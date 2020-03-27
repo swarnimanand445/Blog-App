@@ -16,9 +16,7 @@ app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
 //CONNECTION OF MONGOOSE TO THE SERVER MONGODB
-//mongoose.connect("mongodb://127.0.0.1/Restful_BlogApp",{useNewUrlParser:true,useUnifiedTopology:true});
-//var MongoClient=require('mongodb').MongoClient;
-//var url="mongodb://restful-blog-app-js.herokuapp.com/Restful_BlogApp";
+
 var url=process.env.MONGO_URL||"mongodb+srv://swarnimanand445:gupta00006@test-vqkmj.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true},function(err,client)
 {
@@ -44,14 +42,7 @@ var blogSchema=new mongoose.Schema({
 //COMPILED VERSION OF BLOG SCHEMA
 var Blogs=mongoose.model("Blogs",blogSchema);
 
-// var myquery = { title: 'kjhsdkjhkjfd' };
-// Blogs.collection.deleteOne(myquery, function(err, obj) {
-//   if (err) throw err;
-//   else
-//   {
-//   console.log("1 document deleted");
-//   }
-// });
+
 
 //INDEX PAGE
 app.get("/",function(req,res)
